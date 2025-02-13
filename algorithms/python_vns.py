@@ -23,11 +23,11 @@ W = [
 ]
 
 T = [
-    [1,2,3],
-    [4,5,6],
+    [1],
+    [2],
 ]
 
-shared_cities = [7,8,9,10]
+shared_cities = [3,4]
 
 def greedy_initialization():
     k = 0
@@ -320,8 +320,12 @@ def evaluation():
                     if ' m' in distance:
                         contents = distance.split(' ')
                         val = float(contents[0]) * 0.001
+                        if val < 0.01:
+                            val = 0.0
                         distance = str(val) +' km'
+                        
                     distance = str(distance).replace(' km', '')
+
                     mtrx[i][j] = float(distance)
                 else:
                     print(f"  → 目的地: {destinations[j]}, ルートが見つかりません。")
@@ -329,13 +333,18 @@ def evaluation():
         print("APIレスポンスに問題があります。")
 
     W = mtrx
+    print(W)
 
+    CITY_NUMBER = len(mtrx)
     
     initial_solution = greedy_initialization()
 
-    initial_solution_lengths = [[0.0] for i in range(SALESMAN_NUMBER)]
+    print(initial_solution)
+
+    initial_solution_lengths = [0.0] * SALESMAN_NUMBER
     for i in range(len(initial_solution)):
         for j in range(1, len(initial_solution[i])):
+            print("j:"+str(j))
             initial_solution_lengths[i] += W[initial_solution[i][j-1]][initial_solution[i][j]]
 
     initial_value = sum(initial_solution_lengths)

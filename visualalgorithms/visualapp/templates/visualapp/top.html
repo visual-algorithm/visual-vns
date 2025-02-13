@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ビジュアルVNS</title>
+    </head>
+    <body>
+        <h1>ようこそビジュアルVNSへ!</h1>
+        <h2>コース一覧</h2>
+        {% if cources %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>タイトル</th>
+                    <th>スタート地点</th>
+                    <th>作成日</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cource in cources %}
+                <tr>
+                    <th><a href='{% url "cource_detail" cource.id %}'>{{ cource.title }}</a></th>
+                    <th>{{ cource.start }}</th>
+                    <th>{{ cource.created_at }}</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>コースはまだ作成されていません。</p>
+        {% endif %}
+    </body>
+</html>

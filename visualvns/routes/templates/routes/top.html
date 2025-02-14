@@ -1,0 +1,49 @@
+{% load static %}
+{% load django_bootstrap5 %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ビジュアル VNS</title>
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        <link rel="stylesheet" href="{% static 'routes/css/style.css' %}">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand flex-md-row navbar-dark bg-dark">
+            <div class="container justify-content-between">
+                <a href="/" class="navbar-brand">ビジュアル VNS</a>
+            </div>
+        </nav>
+        <main>
+            <div class="container">
+                <div class="welcome">
+                    <h1 class="title">ようこそ ビジュアル VNSへ!</h1>
+                    <p class="subtitle">VNSでルートを作成しましょう</p>
+                    <a class="btn btn-primary" href="{% url 'route_new' %}">ルートを作成する</a>
+                </div>
+            </div>
+            {% if routes %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>作成者</th>
+                        <th>作成日</th>
+                        <th>タイトル</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for route in routes %}
+                    <tr>
+                        <th>{{ route.created_by.username }}</th>
+                        <th>{{ route.created_at }}</th>
+                        <th><a href="{% url 'route_detail' route.id %}">{{ route.title }}</a></th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>ルートはまだ作成されていません。</p>
+            {% endif %}
+        </main>
+    </body>
+</html>

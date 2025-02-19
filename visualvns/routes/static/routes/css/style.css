@@ -1,5 +1,7 @@
 main {
     padding: 2rem 0;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 
 .welcome {
@@ -9,4 +11,8 @@ main {
     align-items: center;
     display: flex;
     flex-direction: column;
+}
+
+.cities {
+    margin-bottom: 1rem;
 }

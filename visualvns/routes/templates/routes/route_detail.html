@@ -1,17 +1,24 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>ビジュアル VNS</title>
-    </head>
-    <body>
-        <div>
-            <h2>{{ route.title }} by {{ route.created_by.username }}</h2>
-            <small>作成日: {{ route.created_at }}</small>
-            <p>拠点: {{ route.depot }}</p>
-            <p>訪問1: {{ route.spot1 }}</p>
-            <p>訪問2: {{ route.spot2 }}</p>
-            <p>訪問3: {{ route.spot3 }}</p>
-            <p>備考: {{ route.description }}</p>
-        </div>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block main %}
+<h2>{{ route.title }} by {{ route.created_by.username }}</h2>
+<div class="route-date">
+    作成日: {{route.created_at|date:"DATETIME_FORMAT"}}
+    {% if user.is_authenticated and route.created_by_id == user.id %}
+    <a href="{% url 'route_edit' route.id %}">編集</a>
+    {% endif %}
+</div>
+
+<div class="cities">
+    <p>{{ route.depot }}</p>
+    <p>{{ route.spot1 }}</p>
+    <p>{{ route.spot2 }}</p>
+    <p>{{ route.spot3 }}</p>
+</div>
+
+<p>{{ route.description }}</p>
+
+{% load static %}
+<iframe src="{% static 'multiple_routes_map.html' %}" width="500" height="500"></iframe>
+
+{% endblock %}

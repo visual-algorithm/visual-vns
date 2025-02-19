@@ -43,3 +43,7 @@ def route_edit(request, route_id):
 def route_detail(request, route_id):
     route = get_object_or_404(Route, pk=route_id)
     return render(request, 'routes/route_detail.html', {'route': route}) 
+
+def route_solve(request, route_id):
+    route = get_object_or_404(Route, pk=route_id)
+    return render(request, 'routes/route_solve.html', {'route': route})

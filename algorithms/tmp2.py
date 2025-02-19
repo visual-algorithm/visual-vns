@@ -20,11 +20,11 @@ routes = [
     }
 ]
 
-# 地図の初期化（最初の出発地を中心）
-m = folium.Map(location=[35.681236, 139.767125], zoom_start=14)
-
 # 🌈 カラーリスト（ルートごとに異なる色を適用）
 colors = ["blue", "red", "green", "purple", "orange"]
+
+# 📌 すべてのルートの座標を格納するリスト
+all_points = []
 
 # 🔄 すべてのルートを処理
 for i, route in enumerate(routes):
@@ -38,6 +38,26 @@ for i, route in enumerate(routes):
     )
 
     # 経路データから座標を取得
+    route_points = polyline.decode(directions[0]["overview_polyline"]["points"])
+    all_points.extend(route_points)  # すべての座標をリストに追加
+
+# 🌍 地図の表示範囲をすべてのルートが収まるように調整
+sw = [min(p[0] for p in all_points), min(p[1] for p in all_points)]  # 南西端
+ne = [max(p[0] for p in all_points), max(p[1] for p in all_points)]  # 北東端
+
+# 地図の初期化（適切な拡大率で表示）
+m = folium.Map(location=[(sw[0] + ne[0]) / 2, (sw[1] + ne[1]) / 2], zoom_start=6)
+
+# 再度すべてのルートを描画
+for i, route in enumerate(routes):
+    directions = gmaps.directions(
+        origin=route["start"],
+        destination=route["end"],
+        waypoints=route["waypoints"],
+        mode="driving",
+        language="ja"
+    )
+
     route_points = polyline.decode(directions[0]["overview_polyline"]["points"])
 
     # 経路を地図に描画
@@ -53,7 +73,10 @@ for i, route in enumerate(routes):
     folium.Marker(route_points[0], popup=f"出発地: {route['start']}", icon=folium.Icon(color="green")).add_to(m)
     folium.Marker(route_points[-1], popup=f"目的地: {route['end']}", icon=folium.Icon(color="red")).add_to(m)
 
+# 地図の表示範囲をすべてのルートが収まるように調整
+m.fit_bounds([sw, ne])
+
 # 地図をHTMLとして保存
 m.save("multiple_routes_map.html")
 
-print("✅ 地図を multiple_routes_map.html に保存しました！")
+print("✅ 地図を multiple_routes_map.html に保存しました！（ルートが全て見える状態）")

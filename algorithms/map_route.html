@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Maps Route</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_B5d5cMEfsU1AfJuRrd3NgS4tBwGfP08&callback=initMap" async defer></script>
+    <script>
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: {lat: 35.681236, lng: 139.767125} // 東京駅を中心に
+        });
+
+        var directionsService = new google.maps.DirectionsService();
+        var directionsRenderer = new google.maps.DirectionsRenderer();
+        directionsRenderer.setMap(map);
+
+        var request = {
+            origin: "Tokyo Station, Japan",
+            destination: "Shinjuku Station, Japan",
+            travelMode: 'DRIVING'
+        };
+
+        directionsService.route(request, function(result, status) {
+            if (status == 'OK') {
+                directionsRenderer.setDirections(result);
+            } else {
+                console.error('Directions request failed due to ' + status);
+            }
+        });
+    }
+    </script>
+</head>
+<body>
+    <h3>Google Maps Route</h3>
+    <div id="map" style="width: 100%; height: 600px;"></div>
+</body>
+</html>

@@ -3,6 +3,15 @@ from django.conf import settings
 
 # Create your models here.
 
+class Problem(models.Model):
+    title = models.CharField('タイトル', max_length=120)
+    depot = models.CharField('拠点', max_length=120)
+    spot1 = models.CharField('訪問1', max_length=120)
+    spot2 = models.CharField('訪問2', max_length=120)
+    spot3 = models.CharField('訪問3', max_length=120)
+    spot4 = models.CharField('訪問4', max_length=120)
+    spot5 = models.CharField('訪問5', max_length=120)
+
 class Route(models.Model):
     title = models.CharField('タイトル', max_length=128)
     depot = models.CharField('拠点', max_length=120)

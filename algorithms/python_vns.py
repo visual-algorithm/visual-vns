@@ -27,7 +27,7 @@ T = [
     [2],
 ]
 
-shared_cities = [3,4]
+shared_cities = [3]
 
 def greedy_initialization():
     k = 0
@@ -105,8 +105,8 @@ def shaking(x, s_max):
         cities_numbers.append(len(route))
 
     minimum_cities_number = min(cities_numbers)
-    minimum_cities_index = cities_numbers.index(max(cities_numbers))
-    maximum_cities_index = cities_numbers.index(min(cities_numbers))
+    minimum_cities_index = cities_numbers.index(min(cities_numbers))
+    maximum_cities_index = cities_numbers.index(max(cities_numbers))
 
     s = k = pos1 = pos2 = relocated_city_number = r = 0
 
@@ -183,7 +183,6 @@ def shaking(x, s_max):
 
     best_index = count.index(max(count))
     
-    print(N[best_index])
 
     return N[best_index]
 
@@ -265,7 +264,6 @@ def local_search(x):
         
         best_routes[min_salesman] = copy.deepcopy(better_routes[min_salesman])
 
-    print(best_routes)
 
     index = pos1 = pos2 = 0
     two_opted_length = min_two_opted_length = 0
@@ -276,7 +274,7 @@ def local_search(x):
 
     for i in range(0, len(best_routes)):
         min_two_opted_length = 100000
-        better_routes = copy.deepcopy(best_routes[i])
+        better_route = copy.deepcopy(best_routes[i])
         for j in range(1, len(best_routes[i])-2):
             two_opted_route = copy.deepcopy(best_routes[i])
             for l in range(j, len(best_routes[i])-1):
@@ -306,36 +304,41 @@ def evaluation():
     destinations = ["埼玉県秩父市宮側町1-8", "埼玉県秩父市番場町1-1","埼玉県秩父市熊木熊木町8-15","埼玉県秩父郡小鹿野町長留2518"]
 
     # Distance Matrix API を呼び出す
-    result = googlemaps.distance_matrix.distance_matrix(client=gc, origins=origins, destinations=destinations, mode="driving")
+    # result = googlemaps.distance_matrix.distance_matrix(client=gc, origins=origins, destinations=destinations, mode="driving")
 
-    mtrx = [[0]*len(destinations) for i in range(len(destinations))]
+    # mtrx = [[0]*len(destinations) for i in range(len(destinations))]
 
-    if "rows" in result:
-        for i, row in enumerate(result["rows"]):
-            for j, element in enumerate(row["elements"]):
-                if element["status"] == "OK":
-                    distance = element["distance"]["text"]
-                    duration = element["duration"]["text"]
-                    distance = str(distance)
-                    if ' m' in distance:
-                        contents = distance.split(' ')
-                        val = float(contents[0]) * 0.001
-                        if val < 0.01:
-                            val = 0.0
-                        distance = str(val) +' km'
+    # if "rows" in result:
+    #     for i, row in enumerate(result["rows"]):
+    #         for j, element in enumerate(row["elements"]):
+    #             if element["status"] == "OK":
+    #                 distance = element["distance"]["text"]
+    #                 duration = element["duration"]["text"]
+    #                 distance = str(distance)
+    #                 if ' m' in distance:
+    #                     contents = distance.split(' ')
+    #                     val = float(contents[0]) * 0.001
+    #                     if val < 0.01:
+    #                         val = 0.0
+    #                     distance = str(val) +' km'
                         
-                    distance = str(distance).replace(' km', '')
+    #                 distance = str(distance).replace(' km', '')
 
-                    mtrx[i][j] = float(distance)
-                else:
-                    print(f"  → 目的地: {destinations[j]}, ルートが見つかりません。")
-    else:
-        print("APIレスポンスに問題があります。")
+    #                 mtrx[i][j] = float(distance)
+    #             else:
+    #                 print(f"  → 目的地: {destinations[j]}, ルートが見つかりません。")
+    # else:
+    #     print("APIレスポンスに問題があります。")
 
-    W = mtrx
-    print(W)
+    # W = mtrx
+    W = [
+        [0.0, 0.4, 1.1, 6.5], 
+        [0.5, 0.0, 1.0, 5.8], 
+        [1.1, 1.4, 0.0, 5.7], 
+        [6.5, 6.7, 5.8, 0.0]
+    ]
 
-    CITY_NUMBER = len(mtrx)
+    CITY_NUMBER = len(W)
     
     initial_solution = greedy_initialization()
 
@@ -344,7 +347,6 @@ def evaluation():
     initial_solution_lengths = [0.0] * SALESMAN_NUMBER
     for i in range(len(initial_solution)):
         for j in range(1, len(initial_solution[i])):
-            print("j:"+str(j))
             initial_solution_lengths[i] += W[initial_solution[i][j-1]][initial_solution[i][j]]
 
     initial_value = sum(initial_solution_lengths)
@@ -360,7 +362,7 @@ def evaluation():
         shaked_solution = shaking(initial_solution, 1)
         better_solution = local_search(shaked_solution)
 
-        solution_lengths = [[0] for i in range(SALESMAN_NUMBER)]
+        solution_lengths = [0.0] * SALESMAN_NUMBER
         for i in range(len(better_solution)):
             for j in range(1, len(better_solution[i])):
                 solution_lengths[i] += W[better_solution[i][j-1]][better_solution[i][j]]
@@ -379,6 +381,10 @@ def evaluation():
     print("optimal value is "+str(min_value))
     print("optimal solution is ")
     print(optimal_solution)
+    for route in optimal_solution:
+        for city in route:
+              print(destinations[city], end=', ')
+        print()
     print("all_cnt is "+str(all_cnt))
 
 

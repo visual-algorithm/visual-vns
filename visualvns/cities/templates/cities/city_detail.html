@@ -1,14 +1,14 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>ビジュアル VNS</title>
-    </head>
-    <body>
-        <div>
-            <h2>{{ city.city_name }} by {{ city.created_by.username }}</h2>
-            <small>作成日: {{ city.created_at }}</small>
-            <pre>{{ city.address }}</pre>
-            <p>{{ city.description }}</p>
-        </div>
-    </body>
-</html>
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block main %}
+<div>
+    <h2><a href="{% url 'city_edit' city.id %}">{{ city.city_name }}</a> by {{ city.created_by.username }}</h2>
+    <small>作成日: {{ city.created_at }}</small>
+    <p>住所: {{ city.address }}</p>
+    {% for sman in city.salesman.all %}
+        <p>巡回制限: {{ sman.salesman_name }}</p>
+    {% endfor %}
+    <p>備考: {{ city.description }}</p>
+</div>
+{% endblock %}

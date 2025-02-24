@@ -2,20 +2,8 @@
 
 {% block main %}
 
-<div class="welcome">
-    <h1 class="title">ようこそ ビジュアル VNSへ!</h1>
-    <p class="subtitle">最適な経路を計算しましょう</p>
-    <table>
-        <tr>
-            <td>
-                <a class="btn btn-primary" href="{% url 'city_new' %}">都市を登録する</a>
-            </td>
-            <td>
-                 <a class="btn btn-primary" href="{% url 'solve_prepare' %}">経路を作成する</a>
-            </td>
-        </tr>
-    </table>
-</div>
+<h2>経路作成の準備</h2>
+
 {% if cities %}
 <table class="table">
     <thead>
@@ -23,6 +11,7 @@
             <th>作成者</th>
             <th>作成日</th>
             <th>都市名</th>
+            <th>選択</th>
         </tr>
     </thead>
     <tbody>
@@ -31,6 +20,7 @@
             <th>{{ city.created_by.username }}</th>
             <th>{{ city.created_at }}</th>
             <th><a href="{% url 'city_detail' city.id %}">{{ city.city_name }}</a></th>
+            <th><input type="radio"/></th>
         </tr>
         {% endfor %}
     </tbody>
@@ -38,4 +28,5 @@
 {% else %}
 <p>都市はまだ作成されていません。</p>
 {% endif %}
-{% endblock %}        
+
+{% endblock %}

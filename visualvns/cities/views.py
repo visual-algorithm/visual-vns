@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseForbidden
-from cities.models import City
+from cities.models import City, Salesman
 
 from cities.forms import CityForm
 
@@ -45,3 +45,8 @@ def city_edit(request, city_id):
 def city_detail(request, city_id):
     city = get_object_or_404(City, pk=city_id)
     return render(request, 'cities/city_detail.html', {'city': city})
+
+def solve_prepare(request):
+    cities = City.objects.all()
+    return render(request, 'cities/solve_prepare.html', {'cities': cities})
+

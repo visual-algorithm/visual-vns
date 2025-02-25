@@ -59,5 +59,7 @@ def solve_prepare(request):
         form = SolveForm()
     return render(request, 'cities/solve_prepare.html', {'form': form, 'selected_cities': selected_cities})
 
-def solve(request):
+def solve(request, selected_cities):
+    m = make_data.model()
+
     return render(request, 'cities/solve.html')

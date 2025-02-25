@@ -7,8 +7,6 @@ optimal = [
 ]
 
 optimal_address = [[]]
-routes = []
-
 for route in optimal:
     optimal_address.append([""] * (len(route)))
 
@@ -19,12 +17,4 @@ for i in range(len(optimal)):
     for j in range(len(optimal[i])):
         optimal_address[i][j] = waypoints[optimal[i][j]]
 
-for route in optimal_address:
-    del(route[0])
-    del(route[len(route)-1])
-
-for i in range(len(optimal_address)):
-    d = {"start": origin, "waypoints": optimal_address[i], "end": origin}
-    routes.append(d)
-
-print(routes)
+print(optimal_address)

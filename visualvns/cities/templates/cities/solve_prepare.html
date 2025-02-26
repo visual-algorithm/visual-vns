@@ -6,19 +6,20 @@
 
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-</form>
-
-{% if selected_cities %}
-    <h2>選択済みの都市</h2>
-    <ul>
-        {% for city in selected_cities %}
-            <li>{{ city.city_name }}</li>
+    {{ formset.management_form }}
+    <table>
+        <tr>
+            <th>都市</th>
+            <th>セールスマン</th>
+        </tr>
+        {% for form in formset %}
+        <tr>
+            <td>{{ form.city.value }}</td>
+            <td>{{ form.salesman }}</td>
+            {{ form.city.as_hidden }}
+        </tr>
         {% endfor %}
-    </ul>
-    <a class="btn btn-primary" href="{% url 'solve' %}">経路を作成する</a>
-{% else %}
-    <p>まだ都市が選択されていません。</p>
-{% endif %}
-
+    </table>
+    <button type="submit">決定</button>
+</form>
 {% endblock %}

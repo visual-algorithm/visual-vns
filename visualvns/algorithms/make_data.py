@@ -3,7 +3,7 @@ import googlemaps.distance_matrix
 import folium
 import polyline
 
-import algorithm
+from algorithms import algorithm
 import copy
 
 class model():
@@ -22,8 +22,10 @@ class model():
         self.cities.insert(0, origin)
         self.google_client = googlemaps.Client(key=self.API_KEY)
 
-        result = googlemaps.distance_matrix.distance_matrix(self.google_client, self.waypoints, self.waypoints)
+        # result = googlemaps.distance_matrix.distance_matrix(self.google_client, self.waypoints, self.waypoints)
         mtrx = [[0]*len(self.cities) for i in range((len(self.cities)))]
+
+        result = "a"
 
         if "rows" in result:
             for i, row in enumerate(result["rows"]):
@@ -44,10 +46,10 @@ class model():
                         mtrx[i][j] = float(distance)
                     else:
                         print(f"  → 目的地: {self.destinations[j]}, ルートが見つかりません。")
-        else:
-            print("APIレスポンスに問題があります。")
+        #else:
+        #    print("APIレスポンスに問題があります。")
 
-        # mtrx = [[0.0, 0.4, 1.1, 6.5], [0.5, 0.0, 1.0, 5.8], [1.1, 1.4, 0.0, 5.7], [6.5, 6.7, 5.8, 0.0]]
+        mtrx = [[0.0, 0.4, 1.1, 6.5], [0.5, 0.0, 1.0, 5.8], [1.1, 1.4, 0.0, 5.7], [6.5, 6.7, 5.8, 0.0]]
         self.dis_matrix = mtrx
         
 

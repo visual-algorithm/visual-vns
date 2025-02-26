@@ -1,15 +1,25 @@
 from django import forms
-from cities.models import City
+from django.forms import modelformset_factory
+from cities.models import City, Salesman
 
 class CityForm(forms.ModelForm):
     class Meta:
         model = City
-        fields = ('city_name', 'address', 'description', 'salesman')
+        fields = ('city_name', 'address', 'description')
 
 class SolveForm(forms.Form):
-    cities = forms.ModelMultipleChoiceField(
-        queryset=City.objects.all(),
-        widget=forms.CheckboxSelectMultiple(attrs={"onchange": "this.form.submit();"}),
-        required = True,
-        label="選択してください",
+    salesman = forms.ModelChoiceField(
+        queryset=Salesman.objects.all(),
+        required=True,
+        label="巡回させるセールスマン"
     )
+    class Meta:
+        model = City
+        fields = ["city", "salesman"]
+        widgets = {"city": forms.HiddenInput()}
+
+CityFormSet = modelformset_factory(
+    City,
+    form = CityForm,
+    extra=0
+)

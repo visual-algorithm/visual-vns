@@ -3,9 +3,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseForbidden
 from cities.models import City, Salesman
 
-from cities.forms import CityForm, SolveForm
+from cities.forms import CityForm, SolveForm, CityFormSet
 
-from algorithms import make_data
+# from algorithms import make_data
 
 # Create your views here.
 
@@ -49,17 +49,15 @@ def city_detail(request, city_id):
     return render(request, 'cities/city_detail.html', {'city': city})
 
 def solve_prepare(request):
-    selected_cities = []
     if request.method == "POST":
-        form = SolveForm(request.POST)
-        if form.is_valid():
-            selected_cities = form.cleaned_data['cities']
-
+        formset = CityFormSet(request.POST)
+        if formset.is_valid():
+            formset.save()
     else:
-        form = SolveForm()
-    return render(request, 'cities/solve_prepare.html', {'form': form, 'selected_cities': selected_cities})
-
+        cities = City.objects.all()
+        city_salesman_selections = [
+            City(city=city, salesman=Salesman.objects.first()) for city in cities
+        ]
 def solve(request, selected_cities):
-    m = make_data.model()
 
     return render(request, 'cities/solve.html')

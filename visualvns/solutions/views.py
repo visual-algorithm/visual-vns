@@ -1,9 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseForbidden
-from cities.models import City, Salesman
+from solutions.models import City, Salesman
 
-from cities.forms import CityForm, SolveForm, CityFormSet
+from solutions.forms import CityForm, SolveForm, CityFormSet
 
 # from algorithms import make_data
 
@@ -12,7 +12,7 @@ from cities.forms import CityForm, SolveForm, CityFormSet
 def top(request):
     cities = City.objects.all()
     context = {"cities": cities}
-    return render(request, "cities/top.html", context)
+    return render(request, "solutions/top.html", context)
 
 @login_required
 def city_new(request):
@@ -26,7 +26,7 @@ def city_new(request):
         
     else:
         form = CityForm()
-        return render(request, 'cities/city_new.html', {'form': form})
+        return render(request, 'solutions/city_new.html', {'form': form})
 
 @login_required
 def city_edit(request, city_id):
@@ -41,12 +41,12 @@ def city_edit(request, city_id):
             return redirect('city_detail', city_id = city_id)
     else:
         form = CityForm(instance=city)
-        return render(request, 'cities/city_edit.html', {'form': form})
+        return render(request, 'solutions/city_edit.html', {'form': form})
 
 
 def city_detail(request, city_id):
     city = get_object_or_404(City, pk=city_id)
-    return render(request, 'cities/city_detail.html', {'city': city})
+    return render(request, 'solutions/city_detail.html', {'city': city})
 
 def solve_prepare(request):
     if request.method == "POST":
@@ -60,4 +60,4 @@ def solve_prepare(request):
         ]
 def solve(request, selected_cities):
 
-    return render(request, 'cities/solve.html')
+    return render(request, 'solutions/solve.html')

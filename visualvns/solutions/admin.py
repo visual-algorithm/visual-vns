@@ -1,5 +1,5 @@
 from django.contrib import admin
-from cities.models import City, Route, Salesman
+from solutions.models import City, Route, Salesman
 
 # Register your models here.
 

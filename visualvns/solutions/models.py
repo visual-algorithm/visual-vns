@@ -19,7 +19,7 @@ class City(models.Model):
 
 class Salesman(models.Model):
     salesman_name = models.CharField(max_length=32)
-    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    city = models.ForeignKey(City, related_name="salesmen",on_delete=models.CASCADE)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="作成者", on_delete=models.CASCADE)
     created_at = models.DateTimeField("作成日", auto_now_add=True)
     update_at = models.DateTimeField("更新日", auto_now=True)
@@ -31,7 +31,7 @@ class Route(models.Model):
     route_name = models.CharField(max_length=32)
     route_description = models.TextField('注意点', blank=True)
     depot = models.ManyToManyField(City, related_name='depot', related_query_name='to_depot')
-    cities = models.ManyToManyField(City, related_name='city', related_query_name='to_city')
+    cities = models.ManyToManyField(City, related_name='routes')
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="作成者", on_delete=models.CASCADE)
     created_at = models.DateTimeField("作成日", auto_now_add=True)
     update_at = models.DateTimeField("更新日", auto_now=True)

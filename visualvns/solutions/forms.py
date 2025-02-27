@@ -1,25 +1,25 @@
 from django import forms
 from django.forms import modelformset_factory
-from solutions.models import City, Salesman
+from solutions.models import City, Salesman, Route
 
 class CityForm(forms.ModelForm):
     class Meta:
         model = City
         fields = ('city_name', 'address', 'description')
 
-class SolveForm(forms.Form):
-    salesman = forms.ModelChoiceField(
-        queryset=Salesman.objects.all(),
-        required=True,
-        label="巡回させるセールスマン"
-    )
+class SalesmanForm(forms.ModelForm):
     class Meta:
-        model = City
-        fields = ["city", "salesman"]
-        widgets = {"city": forms.HiddenInput()}
+        model = Salesman
+        fields = ["name", "city"]
 
-CityFormSet = modelformset_factory(
-    City,
-    form = CityForm,
-    extra=0
-)
+class RouteForm(forms.ModelForm):
+    cities = forms.ModelMultipleChoiceField(
+        queryset=City.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        label="Select Cities"
+    )
+
+    class Meta:
+        model= Route
+        fields = ["name", "cities"]
+

@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import modelformset_factory
-from cities.models import City, Salesman
+from solutions.models import City, Salesman
 
 class CityForm(forms.ModelForm):
     class Meta:

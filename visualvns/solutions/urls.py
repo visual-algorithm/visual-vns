@@ -1,6 +1,6 @@
 from django.urls import path
 
-from cities import views
+from solutions import views
 
 
 urlpatterns = [

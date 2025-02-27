@@ -1,9 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseForbidden
-from solutions.models import City, Salesman
+from solutions.models import City, Salesman, Route
 
-from solutions.forms import CityForm, SolveForm, CityFormSet
+from solutions.forms import CityForm, SalesmanForm, RouteForm
 
 # from algorithms import make_data
 
@@ -48,16 +48,14 @@ def city_detail(request, city_id):
     city = get_object_or_404(City, pk=city_id)
     return render(request, 'solutions/city_detail.html', {'city': city})
 
-def solve_prepare(request):
+def route_new(request):
     if request.method == "POST":
-        formset = CityFormSet(request.POST)
-        if formset.is_valid():
-            formset.save()
+        form = RouteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("route")
     else:
-        cities = City.objects.all()
-        city_salesman_selections = [
-            City(city=city, salesman=Salesman.objects.first()) for city in cities
-        ]
-def solve(request, selected_cities):
+        form = RouteForm()
 
-    return render(request, 'solutions/solve.html')
+    return render(request, "route_new.html", {'form': form})
+

@@ -5,12 +5,12 @@ from solutions.models import City, Salesman, Route
 class CityForm(forms.ModelForm):
     class Meta:
         model = City
-        fields = ('city_name', 'address', 'description')
+        fields = ('city_name', 'address', 'saleman', 'description')
 
 class SalesmanForm(forms.ModelForm):
     class Meta:
         model = Salesman
-        fields = ["name", "city"]
+        fields = ["salesman_name"]
 
 class RouteForm(forms.ModelForm):
     cities = forms.ModelMultipleChoiceField(
@@ -21,5 +21,5 @@ class RouteForm(forms.ModelForm):
 
     class Meta:
         model= Route
-        fields = ["name", "cities"]
+        fields = ["route_name", "depot", "cities", "route_description"]
 

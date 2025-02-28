@@ -6,9 +6,7 @@
     <h2><a href="{% url 'city_edit' city.id %}">{{ city.city_name }}</a> by {{ city.created_by.username }}</h2>
     <small>作成日: {{ city.created_at }}</small>
     <p>住所: {{ city.address }}</p>
-    {% for sman in city.salesman.all %}
-        <p>巡回制限: {{ sman.salesman_name }}</p>
-    {% endfor %}
+    <p>セールスマン: {{ city.salesman.salesman_name }}</p>
     <p>備考: {{ city.description }}</p>
 </div>
 {% endblock %}

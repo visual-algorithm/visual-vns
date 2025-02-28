@@ -11,11 +11,12 @@
                 <a class="btn btn-primary" href="{% url 'city_new' %}">都市を登録する</a>
             </td>
             <td>
-                 <a class="btn btn-primary" href="{% url 'solve_prepare' %}">経路を作成する</a>
+                 <a class="btn btn-primary" href="{% url 'route_new' %}">都市セットを作成する</a>
             </td>
         </tr>
     </table>
 </div>
+<h2>都市一覧</h2>
 {% if cities %}
 <table class="table">
     <thead>
@@ -38,4 +39,32 @@
 {% else %}
 <p>都市はまだ作成されていません。</p>
 {% endif %}
+
+<h2>都市セット一覧</h2>
+{% if routes %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>作成者</th>
+            <th>作成日</th>
+            <th>経路名</th>
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for route in routes %}
+        <tr>
+            <th>{{ route.created_by.username }}</th>
+            <th>{{ route.created_at }}</th>
+            <th><a href="{% url 'route_detail' route.id %}">{{ route.route_name }}</a></th>
+            <th><a href="{% url 'solve' route.id %}">経路作成</a></th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>都市セットはまだ作成されていません。</p>
+{% endif %}
+
+
 {% endblock %}        

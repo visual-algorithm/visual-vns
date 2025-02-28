@@ -11,7 +11,8 @@ from solutions.forms import CityForm, SalesmanForm, RouteForm
 
 def top(request):
     cities = City.objects.all()
-    context = {"cities": cities}
+    routes = Route.objects.prefetch_related("cities").select_related("depot").all()
+    context = {"cities": cities, "routes": routes}
     return render(request, "solutions/top.html", context)
 
 @login_required
@@ -22,8 +23,7 @@ def city_new(request):
             city = form.save(commit=False)
             city.created_by = request.user
             city.save()
-            return redirect(city_detail, city_id=city.pk)
-        
+            return redirect('city_detail', city_id=city.pk)        
     else:
         form = CityForm()
         return render(request, 'solutions/city_new.html', {'form': form})
@@ -48,14 +48,39 @@ def city_detail(request, city_id):
     city = get_object_or_404(City, pk=city_id)
     return render(request, 'solutions/city_detail.html', {'city': city})
 
+@login_required
 def route_new(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         form = RouteForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect("route")
+            route = form.save(commit=False)
+            route.created_by = request.user
+            route.save()
+            form.save_m2m()
+            return redirect('route_detail', route_id=route.pk)
     else:
         form = RouteForm()
+        return render(request, "solutions/route_new.html", {'form': form})
 
-    return render(request, "route_new.html", {'form': form})
+@login_required
+def route_edit(request, route_id):
+    route = get_object_or_404(Route, pk=route_id)
+    if route.created_by_id != request.user.id:
+        return HttpResponseForbidden("この経路の編集は許可されていません。")
 
+    if request.method == 'POST':
+        form = RouteForm(request.POST, instance=route)
+        if form.is_valid():
+            form.save()
+            return redirect('route_detail', route_id = route_id)
+    else:
+        form = RouteForm(instance=route)
+        return render(request, 'solutions/route_edit.html', {'form': form})
+    
+def route_detail(request, route_id):
+    route = get_object_or_404(Route, pk=route_id)
+    return render(request, 'solutions/route_detail.html', {'route': route})
+
+def solve(request, route_id):
+    route = get_object_or_404(Route.objects.filter(id=route_id).prefetch_related("cities__salesmen"))
+    return render(request, 'solutions/solve.html', {"route": route})

@@ -5,7 +5,7 @@ from solutions.models import City, Salesman, Route
 class CityForm(forms.ModelForm):
     class Meta:
         model = City
-        fields = ('city_name', 'address', 'saleman', 'description')
+        fields = ('city_name', 'address', 'salesman', 'description')
 
 class SalesmanForm(forms.ModelForm):
     class Meta:

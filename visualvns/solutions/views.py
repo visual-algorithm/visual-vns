@@ -82,5 +82,5 @@ def route_detail(request, route_id):
     return render(request, 'solutions/route_detail.html', {'route': route})
 
 def solve(request, route_id):
-    route = get_object_or_404(Route.objects.filter(id=route_id).prefetch_related("cities__salesmen"))
+    route = get_object_or_404(Route, pk=route_id)
     return render(request, 'solutions/solve.html', {"route": route})

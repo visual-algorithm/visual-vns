@@ -8,7 +8,7 @@
     <p>拠点: {{ route.depot.city_name }}</p>
     <p>都市: </p>
     {% for city in route.cities.all %}
-        {{ city.city_name }} セールスマン:  {{ city.salesman.salesman_name }}{% if not forloop.last %}, {% endif %}
+        <p>{{ city.city_name }} セールスマン:  {{ city.salesman.salesman_name }} {% if not forloop.last %}, {% endif %}</p>
     {% endfor %}
     <p>備考: {{ route.route_description }}</p>
 </div>

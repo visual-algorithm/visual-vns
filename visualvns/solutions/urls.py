@@ -10,5 +10,6 @@ urlpatterns = [
     path('route_new/', views.route_new, name='route_new'),
     path('<int:route_id>/route_detail/', views.route_detail, name='route_detail'),
     path('<int:route_id>/route_edit/', views.route_edit, name='route_edit'),
-    path('<int:route_id>/solve', views.solve, name="solve")
+    path('<int:route_id>/solve', views.solve, name="solve"),
+    path('<int:route_id>/result', views.result, name="result")
 ]

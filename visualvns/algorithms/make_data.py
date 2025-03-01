@@ -3,7 +3,7 @@ import googlemaps.distance_matrix
 import folium
 import polyline
 
-from algorithms import algorithm
+import algorithm
 import copy
 
 class model():
@@ -13,14 +13,19 @@ class model():
     origin = ""
     waypoints = []
     cities = []
+    exclusive_cities = [[]]
+    shared_cities = []
+    algo: algorithm.VNS
     dis_matrix: list[list]
 
-    def __init__(self, origin: str, waypoints: list[str]):
+    def __init__(self, origin: str, waypoints: list[str], salesman_number: int, exclusive_cities, shared_cities):
         self.origin = origin
         self.waypoints = waypoints
         self.cities = copy.deepcopy(waypoints)
         self.cities.insert(0, origin)
         self.google_client = googlemaps.Client(key=self.API_KEY)
+        self.exclusive_cities = exclusive_cities
+        self.shared_cities = shared_cities
 
         # result = googlemaps.distance_matrix.distance_matrix(self.google_client, self.waypoints, self.waypoints)
         mtrx = [[0]*len(self.cities) for i in range((len(self.cities)))]
@@ -51,11 +56,12 @@ class model():
 
         mtrx = [[0.0, 0.4, 1.1, 6.5], [0.5, 0.0, 1.0, 5.8], [1.1, 1.4, 0.0, 5.7], [6.5, 6.7, 5.8, 0.0]]
         self.dis_matrix = mtrx
+        self.algo = algorithm.VNS(salesman_number, self.dis_matrix)
         
 
     def solve(self):
         algo = algorithm.VNS(2, self.dis_matrix)
-        algo.set_cities([[1], [2]], [3, 4])
+        algo.set_cities(self.exclusive_cities, self.shared_cities)
         solution = algo.evaluation()
         return solution
     
@@ -160,9 +166,9 @@ class model():
         print("✅ 地図を multiple_routes_map.html に保存しました！（ルートが全て見える状態）")
 
 
-origin = "埼玉県秩父市宮側町1-8"
-waypoints = ["埼玉県秩父市番場町1-1","埼玉県秩父市熊木熊木町8-15","埼玉県秩父郡小鹿野町長留2518", "埼玉県秩父市荒川日野542"]
+# origin = "埼玉県秩父市宮側町1-8"
+# waypoints = ["埼玉県秩父市番場町1-1","埼玉県秩父市熊木熊木町8-15","埼玉県秩父郡小鹿野町長留2518"]
 
-m = model(origin, waypoints)
+# m = model(origin, waypoints, 2, [[1], [2]], [3])
 
-m.get_data()
+# m.get_data()

@@ -13,4 +13,6 @@
     <p>備考: {{ route.route_description }}</p>
 </div>
 
+<a class="btn btn-primary" href="{% url 'result' route.id %}">経路を作成する</a>
+
 {% endblock %}

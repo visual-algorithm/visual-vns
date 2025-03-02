@@ -5,7 +5,7 @@ from solutions.models import City, Salesman, Route
 
 from solutions.forms import CityForm, SalesmanForm, RouteForm
 
-from algorithms import make_data
+from algorithms.make_data import model
 
 # Create your views here.
 
@@ -88,6 +88,7 @@ def solve(request, route_id):
 def result(request, route_id):
     route = get_object_or_404(Route, pk=route_id)
     cities = list(route.cities.all())
+    salesmen = list(route.salesmen.all())
     salesman_names = []
     for city in cities:
         salesman_name = city.salesman.salesman_name
@@ -97,21 +98,27 @@ def result(request, route_id):
     city_addresses = list(route.cities.values_list("address", flat=True))
     
     salesman_name_set = set(salesman_names)
-    salesman_name_set.remove('Shared')
+    if 'Shared'in salesman_name_set:
+        salesman_name_set.remove('Shared')
     salesman_name_list = list(salesman_name_set)
-    exclusive_cities = [[] for i in range(len(salesman_name_list))]
+    exclusive_cities = [[] for i in range(len(salesmen)-1)]
     shared_cities = []
     for i in range(len(salesman_names)):
         if salesman_names[i] == 'shared' or salesman_names[i] == 'Shared':
-            shared_cities.append(i)
+            shared_cities.append(i+1)
         else:
             for j in range(len(salesman_name_list)):
                 if salesman_names[i] == salesman_name_list[j]:
-                    exclusive_cities[j].append(i)
+                    exclusive_cities[j].append(i+1)
+
+    # print(depot_address)
+    # print(city_addresses)
+    # print(len(salesmen)-1)
+    # print(exclusive_cities)
+    # print(shared_cities)
+    m = model(depot_address, city_addresses, len(salesmen)-1, exclusive_cities, shared_cities)
     
-    print('exclusive: '+str(exclusive_cities))
-    print('shared: '+str(shared_cities))
+    m.get_data()
 
 
-
-    return render(request, "solutions/result.html")
+    return render(request, "solutions/result.html", {"exclusive_cities": exclusive_cities, "shared_cities": shared_cities})

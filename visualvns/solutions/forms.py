@@ -21,5 +21,5 @@ class RouteForm(forms.ModelForm):
 
     class Meta:
         model= Route
-        fields = ["route_name", "depot", "cities", "route_description"]
+        fields = ["route_name", "depot", "cities", "salesmen", "route_description"]
 

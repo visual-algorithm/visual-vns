@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block main %}
 
@@ -16,6 +17,9 @@
         </tr>
     </table>
 </div>
+
+<iframe src="{% static 'multiple_routes_map.html' %}" width="500" height="500"></iframe>
+
 <h2>都市一覧</h2>
 {% if cities %}
 <table class="table">

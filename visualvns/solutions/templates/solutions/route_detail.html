@@ -10,6 +10,10 @@
     {% for city in route.cities.all %}
         {{ city.city_name }} {% if not forloop.last %}, {% endif %}
     {% endfor %}
+    <p>セールスマン: </p>
+    {% for salesman in route.salesmen.all %}
+        {{ salesman.salesman_name}} {% if not forloop.last %}, {% endif %}
+    {% endfor %}
     <p>備考: {{ route.route_description }}</p>
 </div>
 {% endblock %}

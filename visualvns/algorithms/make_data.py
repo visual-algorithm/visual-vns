@@ -3,7 +3,7 @@ import googlemaps.distance_matrix
 import folium
 import polyline
 
-import algorithm
+from algorithms import algorithm
 import copy
 
 class model():
@@ -27,7 +27,7 @@ class model():
         self.exclusive_cities = exclusive_cities
         self.shared_cities = shared_cities
 
-        # result = googlemaps.distance_matrix.distance_matrix(self.google_client, self.waypoints, self.waypoints)
+        result = googlemaps.distance_matrix.distance_matrix(self.google_client, self.waypoints, self.waypoints)
         mtrx = [[0]*len(self.cities) for i in range((len(self.cities)))]
 
         result = "a"
@@ -54,7 +54,7 @@ class model():
         #else:
         #    print("APIレスポンスに問題があります。")
 
-        mtrx = [[0.0, 0.4, 1.1, 6.5], [0.5, 0.0, 1.0, 5.8], [1.1, 1.4, 0.0, 5.7], [6.5, 6.7, 5.8, 0.0]]
+        # mtrx = [[0.0, 0.4, 1.1, 6.5], [0.5, 0.0, 1.0, 5.8], [1.1, 1.4, 0.0, 5.7], [6.5, 6.7, 5.8, 0.0]]
         self.dis_matrix = mtrx
         self.algo = algorithm.VNS(salesman_number, self.dis_matrix)
         
@@ -67,6 +67,8 @@ class model():
     
     def get_data(self):
         optimal = self.solve()
+
+        print(self.origin)
 
         optimal_address = [[]]
         routes = []
@@ -161,9 +163,9 @@ class model():
         m.fit_bounds([sw, ne])
 
         # 地図をHTMLとして保存
-        m.save("multiple_routes_map.html")
+        m.save("solutions/static/multiple_routes_map.html")
 
-        print("✅ 地図を multiple_routes_map.html に保存しました！（ルートが全て見える状態）")
+        # print("✅ 地図を multiple_routes_map.html に保存しました！（ルートが全て見える状態）")
 
 
 # origin = "埼玉県秩父市宮側町1-8"

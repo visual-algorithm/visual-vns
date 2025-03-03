@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Salesman List</title>
+</head>
+<body>
+    <h1>営業担当者一覧</h1>
+    <ul>
+        {% for salesman in salesmen %}
+            <li>{{ salesman.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>新規登録</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">登録</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+
+<h2>最適経路</h2>
+
+<iframe src="{% static 'multiple_routes_map.html' %}" width="500" height="500"></iframe>
+
+{% endblock %}
+
+<!-- <!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ route.name }}</title>
+</head>
+<body>
+    <h1>{{ route.name }}</h1>
+    <p><strong>Description:</strong> {{ route.description }}</p>
+    <p><strong>Updated At:</strong> {{ route.updated_at }}</p>
+
+    <h2>Depot</h2>
+    {% if route.depot %}
+        <p>{{ route.depot.name }} - {{ route.depot.address }}</p>
+    {% else %}
+        <p>No depot assigned.</p>
+    {% endif %}
+
+    <h2>Cities</h2>
+    <ul>
+        {% for city in route.cities.all %}
+            <li>{{ city.name }} - {{ city.address }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Salesmen</h2>
+    <ul>
+        {% for salesman in route.salesmen.all %}
+            <li>{{ salesman.name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html> -->

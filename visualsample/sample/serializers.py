@@ -14,18 +14,13 @@ class CitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = City
-        fields = ['id', 'name', 'salesman', 'salesman_id']
+        # fields = ['id', 'name', 'salesman', 'salesman_id']
+        fields = '__all__'
 
 class RouteSerializer(serializers.ModelSerializer):
-    cities = CitySerializer(many=True, read_only=True)
-    cities_id = serializers.PrimaryKeyRelatedField(
-        queryset=City.objects.all(), many=True, source='cities', write_only=True
-    )
-    salesmen = SalesmanSerializer(many=True, read_only=True)
-    salesmen_id = serializers.PrimaryKeyRelatedField(
-        queryset=Salesman.objects.all(), many=True, source='salesmen', write_only=True
-    )
+    cities = serializers.PrimaryKeyRelatedField(many=True, queryset=City.objects.all())
+    salesmen = serializers.PrimaryKeyRelatedField(many=True, queryset=Salesman.objects.all())
 
     class Meta:
         model = Route
-        fields = ['id', 'name', 'cities', 'cities_id', 'salesmen', 'salesmen_id']
+        fields = '__all__'

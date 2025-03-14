@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Route Detail</title>
+</head>
+<body>
+    <h1>Route: {{ route.name }}</h1>
+    <h2>Cities:</h2>
+    <ul>
+        {% for city in route.cities.all %}
+            <li>{{ city.name }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Salesmen:</h2>
+    <ul>
+        {% for salesman in route.salesmen.all %}
+            <li>{{ salesman.name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

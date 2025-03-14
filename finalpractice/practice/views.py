@@ -32,7 +32,14 @@ class RouteViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
 
-def ex_solve(request, route_id):
+
+def top(request):
+    cities = City.objects.all()
+    routes = Route.objects.prefetch_related("cities").select_related("depot").all()
+    context = {"cities": cities, "routes": routes}
+    return render(request, "practice/top.html", context)
+
+def test_detail(request, route_id):
     route = get_object_or_404(Route, uuid=route_id)
     context = {"route": route}
     return render(request, "result.html", context)
@@ -73,4 +80,4 @@ def solve(request, route_id):
     m.get_data()
 
 
-    return render(request, "result.html")
+    return render(request, "practice/result.html")

@@ -17,7 +17,7 @@
         </tr>
     </table>
 </div>
-
+<h2>最終履歴</h2>
 <iframe src="{% static 'multiple_routes_map.html' %}" width="500" height="500"></iframe>
 
 <h2>都市一覧</h2>
@@ -35,7 +35,7 @@
         <tr>
             <th>{{ city.created_by.username }}</th>
             <th>{{ city.created_at }}</th>
-            <th><a href="{% url 'city_detail' city.id %}">{{ city.city_name }}</a></th>
+            <th><a href="{% url 'city_detail' city.uuid %}">{{ city.name }}</a></th>
         </tr>
         {% endfor %}
     </tbody>
@@ -60,8 +60,8 @@
         <tr>
             <th>{{ route.created_by.username }}</th>
             <th>{{ route.created_at }}</th>
-            <th><a href="{% url 'route_detail' route.id %}">{{ route.route_name }}</a></th>
-            <th><a href="{% url 'solve' route.id %}">経路作成</a></th>
+            <th><a href="{% url 'route_detail' route.uuid %}">{{ route.name }}</a></th>
+            <th><a href="{% url 'solve' route.uuid %}">経路作成</a></th>
         </tr>
         {% endfor %}
     </tbody>

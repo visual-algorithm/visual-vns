@@ -1,13 +1,10 @@
-origin = "埼玉県秩父市宮側町1-8"
+import pandas as pd
 
-address = [
-    ['埼玉県秩父市番場町1-1'],
-    ['埼玉県秩父市熊木熊木町8-15', '埼玉県秩父郡小鹿野町長留2518']
-]
+df = pd.DataFrame([[0, 10, 20], [30, 40, 50]])
+print(df)
+#     0   1   2
+# 0   0  10  20
+# 1  30  40  50
 
-routes = []
-for i in range(len(address)):
-    d = {"start": origin, "waypoints": address[i], "end": origin}
-    routes.append(d)
-
-print(routes)
+print(df.values.tolist())
+# [[0, 10, 20], [30, 40, 50]]

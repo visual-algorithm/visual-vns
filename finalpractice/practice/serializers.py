@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Route, City, Salesman
+from .models import Route, City, Salesman, Tmp
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -33,3 +33,4 @@ class RouteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Route
         fields = ['uuid', 'name', 'depot', 'cities', 'salesmen', 'description', 'created_by', 'created_at', 'updated_at']
+

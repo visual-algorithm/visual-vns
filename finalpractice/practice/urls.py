@@ -12,6 +12,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     #ここのurlpath直したい
     path('solve/<uuid:route_id>/', views.solve, name='solve'),
+    path('result/<uuid:route_id>/', views.send_result_for_ios, name='result'),
     path('city_new/', views.city_new, name='city_new'),
     path('<uuid:city_id>/city_detail/', views.city_detail, name='city_detail'),
     path('<uuid:city_id>/city_edit/', views.city_edit, name='city_edit'),

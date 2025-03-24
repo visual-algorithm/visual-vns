@@ -41,3 +41,12 @@ class Route(models.Model):
 
     def __str__(self):
         return self.name
+
+class Tmp(models.Model):
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=100)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="作成者", on_delete=models.CASCADE)
+    created_at = models.DateTimeField("作成日", auto_now_add=True)
+
+    def __str__(self):
+        return self.name

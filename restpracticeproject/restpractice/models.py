@@ -41,25 +41,3 @@ class Route(models.Model):
 
     def __str__(self):
         return self.name
-
-# class City(models.Model):
-#     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-#     name = models.CharField(max_length=100)
-
-#     def __str__(self):
-#         return self.name
-
-# class Salesman(models.Model):
-#     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-#     name = models.CharField(max_length=100)
-
-#     def __str__(self):
-#         return self.name
-
-# class Route(models.Model):
-#     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-#     name = models.CharField(max_length=100)
-#     cities = models.ManyToManyField(City, related_name="routes")
-
-#     def __str__(self):
-#         return self.name

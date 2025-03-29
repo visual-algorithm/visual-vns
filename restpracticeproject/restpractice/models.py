@@ -41,6 +41,26 @@ class Route(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Solution(models.Model):
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=100, default="unknown")
+    ans = models.JSONField(default=list)
+    path = models.JSONField(default=list)
+    created_at = models.DateTimeField("作成日", auto_now_add=True)
+    updated_at = models.DateTimeField("更新日", auto_now=True)
+
+    
+# class Result(models.Model):
+#     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+#     ans = models.JSONField(default=list)
+#     created_at = models.DateTimeField("作成日", auto_now_add=True)
+
+# class Item(models.Model):
+#     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+#     name = models.CharField(max_length=100, default="unknown")
+#     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="作成者", on_delete=models.CASCADE)
+
 
 # class City(models.Model):
 #     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

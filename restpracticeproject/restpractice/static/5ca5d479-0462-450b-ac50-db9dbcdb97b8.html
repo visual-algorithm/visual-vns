@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_92fa38b4ed62d7691fc1b92df0a0ec59 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_92fa38b4ed62d7691fc1b92df0a0ec59" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_92fa38b4ed62d7691fc1b92df0a0ec59 = L.map(
+                "map_92fa38b4ed62d7691fc1b92df0a0ec59",
+                {
+                    center: [35.635595, 139.52552],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 6,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_aa916fb04dc3401f57e6a7ac14a81537 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_aa916fb04dc3401f57e6a7ac14a81537.addTo(map_92fa38b4ed62d7691fc1b92df0a0ec59);
+        
+    
+            var poly_line_057d1e7e4d7ba20b20d1c6836789d312 = L.polyline(
+                [[35.63184, 139.52789], [35.63182, 139.52828], [35.63183, 139.52832], [35.63189, 139.52824], [35.63195, 139.52817], [35.63213, 139.528], [35.63258, 139.52762], [35.63311, 139.52722], [35.63298, 139.52675], [35.6329, 139.52659], [35.63279, 139.52635], [35.63277, 139.52629], [35.63297, 139.52618], [35.63353, 139.52588], [35.6341, 139.52557], [35.63445, 139.52535], [35.63456, 139.52525], [35.6347, 139.52509], [35.63475, 139.52497], [35.63488, 139.52477], [35.63464, 139.52434], [35.63432, 139.52456], [35.63397, 139.52477], [35.63389, 139.5248], [35.63384, 139.52497], [35.63381, 139.52507], [35.63381, 139.52514], [35.63382, 139.52517], [35.63381, 139.52514], [35.63381, 139.52507], [35.63382, 139.52502], [35.63386, 139.52494], [35.63389, 139.5248], [35.63393, 139.52479], [35.63416, 139.52467], [35.63464, 139.52434], [35.63488, 139.52477], [35.63479, 139.5249], [35.63473, 139.52503], [35.63456, 139.52525], [35.63437, 139.5254], [35.63378, 139.52575], [35.63297, 139.52618], [35.63277, 139.52629], [35.63279, 139.52635], [35.63285, 139.52648], [35.63298, 139.52675], [35.63311, 139.52722], [35.63292, 139.52735], [35.63262, 139.52759], [35.63244, 139.52774], [35.63204, 139.52808], [35.63189, 139.52824], [35.63183, 139.52832], [35.63182, 139.52828], [35.63182, 139.52822], [35.63184, 139.52789]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_92fa38b4ed62d7691fc1b92df0a0ec59);
+        
+    
+            poly_line_057d1e7e4d7ba20b20d1c6836789d312.bindTooltip(
+                `<div>
+                     ルート1: 神奈川県川崎市多摩区菅城下2-18 → 神奈川県川崎市多摩区菅城下18-41 → 神奈川県川崎市多摩区菅城下2-18
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_b69a91f338c4772279872b16cf941d1a = L.marker(
+                [35.63184, 139.52789],
+                {
+}
+            ).addTo(map_92fa38b4ed62d7691fc1b92df0a0ec59);
+        
+    
+            var icon_db4a0cefd7b537f6bb621279f58c4e84 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_b69a91f338c4772279872b16cf941d1a.setIcon(icon_db4a0cefd7b537f6bb621279f58c4e84);
+        
+    
+        var popup_e931296a4f66743143e1c8c945935ba6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7dfe1754dc6b09f40e3ce96ccfe87c27 = $(`<div id="html_7dfe1754dc6b09f40e3ce96ccfe87c27" style="width: 100.0%; height: 100.0%;">出発地: 神奈川県川崎市多摩区菅城下2-18</div>`)[0];
+                popup_e931296a4f66743143e1c8c945935ba6.setContent(html_7dfe1754dc6b09f40e3ce96ccfe87c27);
+            
+        
+
+        marker_b69a91f338c4772279872b16cf941d1a.bindPopup(popup_e931296a4f66743143e1c8c945935ba6)
+        ;
+
+        
+    
+    
+            var marker_1aa461569090d631a380c1bdd64c62ca = L.marker(
+                [35.63184, 139.52789],
+                {
+}
+            ).addTo(map_92fa38b4ed62d7691fc1b92df0a0ec59);
+        
+    
+            var icon_cc44d84de7889583dd7aa939b02f088b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_1aa461569090d631a380c1bdd64c62ca.setIcon(icon_cc44d84de7889583dd7aa939b02f088b);
+        
+    
+        var popup_4584e00a9aca738b17816a414a61f7e5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b2ef397c5ad5fbb763f9dfc3e3b8db2c = $(`<div id="html_b2ef397c5ad5fbb763f9dfc3e3b8db2c" style="width: 100.0%; height: 100.0%;">目的地: 神奈川県川崎市多摩区菅城下2-18</div>`)[0];
+                popup_4584e00a9aca738b17816a414a61f7e5.setContent(html_b2ef397c5ad5fbb763f9dfc3e3b8db2c);
+            
+        
+
+        marker_1aa461569090d631a380c1bdd64c62ca.bindPopup(popup_4584e00a9aca738b17816a414a61f7e5)
+        ;
+
+        
+    
+    
+            var poly_line_e1b6c4ca8d650373fe42f42c7cf9223a = L.polyline(
+                [[35.63184, 139.52789], [35.63182, 139.52828], [35.63183, 139.52832], [35.63172, 139.52845], [35.63159, 139.5286], [35.63151, 139.52864], [35.63118, 139.52866], [35.63104, 139.52867], [35.63075, 139.52872], [35.6307, 139.52871], [35.63057, 139.52867], [35.63052, 139.52865], [35.63046, 139.52864], [35.63046, 139.5286], [35.63045, 139.52857], [35.63042, 139.52853], [35.63044, 139.52856], [35.63046, 139.5286], [35.63045, 139.52871], [35.63033, 139.52898], [35.63015, 139.52928], [35.63012, 139.52932], [35.63011, 139.52938], [35.63013, 139.52961], [35.62997, 139.52995], [35.62995, 139.53001], [35.6302, 139.53004], [35.63043, 139.53005], [35.63155, 139.52998], [35.63169, 139.52997], [35.63184, 139.52998], [35.63198, 139.53005], [35.63221, 139.53024], [35.63243, 139.53043], [35.63258, 139.5305], [35.63289, 139.53051], [35.633, 139.53053], [35.63309, 139.53057], [35.63317, 139.5306], [35.63325, 139.5306], [35.63347, 139.53057], [35.63355, 139.5306], [35.63359, 139.53064], [35.63362, 139.53067], [35.63375, 139.5305], [35.63408, 139.53006], [35.63437, 139.52966], [35.6348, 139.52907], [35.63506, 139.52865], [35.63541, 139.528], [35.6364, 139.5261], [35.63657, 139.52582], [35.63677, 139.52589], [35.63693, 139.52593], [35.63705, 139.52591], [35.63714, 139.52593], [35.63733, 139.52607], [35.63759, 139.52627], [35.63761, 139.52625], [35.63765, 139.52628], [35.63807, 139.52656], [35.63819, 139.52666], [35.63821, 139.52667], [35.63823, 139.52668], [35.63936, 139.52472], [35.63941, 139.52463], [35.63942, 139.52462], [35.63943, 139.52453], [35.63993, 139.52366], [35.6409, 139.52206], [35.64101, 139.52192], [35.64108, 139.52183], [35.64124, 139.52157], [35.64081, 139.52093], [35.64072, 139.52101], [35.64081, 139.52092], [35.64045, 139.52037], [35.64035, 139.52058], [35.64011, 139.52101], [35.63976, 139.52161], [35.63928, 139.52249], [35.63901, 139.52291], [35.63857, 139.5234], [35.63848, 139.52347], [35.63844, 139.52347], [35.6378, 139.5241], [35.63752, 139.52441], [35.6368, 139.52546], [35.63633, 139.52624], [35.63587, 139.52712], [35.63501, 139.52875], [35.63475, 139.52914], [35.63435, 139.52969], [35.63381, 139.52931], [35.63345, 139.52909], [35.63334, 139.52899], [35.63324, 139.52885], [35.63315, 139.52878], [35.63298, 139.5287], [35.63301, 139.52798], [35.63304, 139.5278], [35.63312, 139.52748], [35.63313, 139.52739], [35.63311, 139.52722], [35.63261, 139.5276], [35.6323, 139.52785], [35.63199, 139.52812], [35.63183, 139.52832], [35.63183, 139.52814], [35.63184, 139.52789]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_92fa38b4ed62d7691fc1b92df0a0ec59);
+        
+    
+            poly_line_e1b6c4ca8d650373fe42f42c7cf9223a.bindTooltip(
+                `<div>
+                     ルート2: 神奈川県川崎市多摩区菅城下2-18 → 神奈川県川崎市多摩区菅城下2-18, 神奈川県川崎市多摩区菅仙谷2-8-1, 神奈川県川崎市多摩区菅4-15-8, 東京都稲城市矢野口318, 神奈川県川崎市多摩区菅2-18-15 → 神奈川県川崎市多摩区菅城下2-18
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_a1915e60584a319258b2d6d32026ad69 = L.marker(
+                [35.63184, 139.52789],
+                {
+}
+            ).addTo(map_92fa38b4ed62d7691fc1b92df0a0ec59);
+        
+    
+            var icon_489bef08d4ff633d45371d604bbcfccc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_a1915e60584a319258b2d6d32026ad69.setIcon(icon_489bef08d4ff633d45371d604bbcfccc);
+        
+    
+        var popup_5b12d7074f211daf199dbd683f57c799 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_287162193b09b6642aca62b17fa8e121 = $(`<div id="html_287162193b09b6642aca62b17fa8e121" style="width: 100.0%; height: 100.0%;">出発地: 神奈川県川崎市多摩区菅城下2-18</div>`)[0];
+                popup_5b12d7074f211daf199dbd683f57c799.setContent(html_287162193b09b6642aca62b17fa8e121);
+            
+        
+
+        marker_a1915e60584a319258b2d6d32026ad69.bindPopup(popup_5b12d7074f211daf199dbd683f57c799)
+        ;
+
+        
+    
+    
+            var marker_67d7a5c7c7e8fb97bad3aa1b350ed182 = L.marker(
+                [35.63184, 139.52789],
+                {
+}
+            ).addTo(map_92fa38b4ed62d7691fc1b92df0a0ec59);
+        
+    
+            var icon_89211799f8a2c8e91401dc816514c760 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_67d7a5c7c7e8fb97bad3aa1b350ed182.setIcon(icon_89211799f8a2c8e91401dc816514c760);
+        
+    
+        var popup_5e22778bdbaec831a3d3be1d57082cc7 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9a2a6d96564a224e81aa1838cdc9959d = $(`<div id="html_9a2a6d96564a224e81aa1838cdc9959d" style="width: 100.0%; height: 100.0%;">目的地: 神奈川県川崎市多摩区菅城下2-18</div>`)[0];
+                popup_5e22778bdbaec831a3d3be1d57082cc7.setContent(html_9a2a6d96564a224e81aa1838cdc9959d);
+            
+        
+
+        marker_67d7a5c7c7e8fb97bad3aa1b350ed182.bindPopup(popup_5e22778bdbaec831a3d3be1d57082cc7)
+        ;
+
+        
+    
+    
+            map_92fa38b4ed62d7691fc1b92df0a0ec59.fitBounds(
+                [[35.62995, 139.52037], [35.64124, 139.53067]],
+                {}
+            );
+        
+</script>
+</html>

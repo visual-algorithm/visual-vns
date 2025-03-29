@@ -16,8 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from restpractice.views import top
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include('restpractice.urls'))
+    path("restpractice/", include('restpractice.urls')),
+    path("", top, name='top'),
+    path("accounts/", include("accounts.urls")),
+
 ]

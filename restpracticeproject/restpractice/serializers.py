@@ -2,7 +2,7 @@
 # from .models import City, Salesman, Route
 
 from rest_framework import serializers
-from .models import City, Salesman, Route
+from .models import City, Salesman, Route, Solution
 
 class CitySerializer(serializers.ModelSerializer):
     class Meta:
@@ -53,6 +53,11 @@ class RouteSerializer(serializers.ModelSerializer):
             instance.salesmen.set(Salesman.objects.filter(uuid__in=salesman_ids))
 
         return super().update(instance, validated_data)
+    
+class SolutionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Solution
+        fields = '__all__'
 
 
 # class CitySerializer(serializers.ModelSerializer):

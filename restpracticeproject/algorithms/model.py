@@ -113,7 +113,7 @@ class model():
 
         return optimal_solution
 
-    def get_data(self):
+    def get_data(self) -> list:
         optimal = self.solve()
 
         optimal_address = [[]]
@@ -211,6 +211,8 @@ class model():
         # 地図をHTMLとして保存
         name = 'restpractice/static/'+str(self.route_id)+'.html'
         m.save(name)
+
+        return optimal
 
 
 # addresses = ["東京駅", "大阪駅", "名古屋駅"]

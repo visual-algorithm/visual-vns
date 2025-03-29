@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Route, City, Salesman, Tmp
+from .models import Route, City, Salesman
 from django.contrib.auth import get_user_model
 
 User = get_user_model()

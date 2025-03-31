@@ -109,7 +109,6 @@ class model():
         # print(self.distance_matrix)
         algo = algorithm.VNS(self.salesman_number, self.city_number, self.distance_matrix, self.exclusive_cities, self.shared_cities)
         optimal_solution = algo.evaluation()
-        print(optimal_solution)
 
         return optimal_solution
 

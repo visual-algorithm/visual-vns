@@ -2,8 +2,7 @@
 {% load django_bootstrap5 %}
 
 {% block main %}
-<h2>経路の登録</h2>
-<p>【注意】CitiesにはDepotを含めてください。</p>
+<h2>セールスマンの登録</h2>
 <form method="post">
     {% csrf_token %}
     {% bootstrap_form form %}

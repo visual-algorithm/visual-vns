@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block main %}
+<div>
+    <h2><a href="{% url 'salesman_edit' salesman.uuid %}">{{ salesman.name }}</a></h2>
+    <small>作成日: {{ salesman.created_at }}</small>
+    <p>備考: {{ salesman.description }}</p>
+</div>
+{% endblock %}

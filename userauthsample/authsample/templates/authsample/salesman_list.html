@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Salesman List</title>
+</head>
+<body>
+    <h2>Salesman List</h2>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Created By</th>
+            <th>Created At</th>
+        </tr>
+        {% for salesman in salesmen %}
+        <tr>
+            <td>{{ salesman.name }}</td>
+            <td>{{ salesman.created_by.username|default:"Unknown" }}</td>
+            <td>{{ salesman.created_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

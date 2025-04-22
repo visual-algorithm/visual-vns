@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_9dad458d68b813d0e9c515a055b7ba6b {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_9dad458d68b813d0e9c515a055b7ba6b" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_9dad458d68b813d0e9c515a055b7ba6b = L.map(
+                "map_9dad458d68b813d0e9c515a055b7ba6b",
+                {
+                    center: [35.627979999999994, 139.43544],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 6,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_88151f7830f9ff87b47706ed84e25a7f = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_88151f7830f9ff87b47706ed84e25a7f.addTo(map_9dad458d68b813d0e9c515a055b7ba6b);
+        
+    
+            var poly_line_447c6f4075a4b0ad71602d539b4cc329 = L.polyline(
+                [[35.63204, 139.43925], [35.63201, 139.43818], [35.63201, 139.43768], [35.63199, 139.43722], [35.63212, 139.43723], [35.63224, 139.43722], [35.63266, 139.43719], [35.6333, 139.43716], [35.63346, 139.43713], [35.63365, 139.43706], [35.63389, 139.43693], [35.63443, 139.43666], [35.63489, 139.43644], [35.6351, 139.43637], [35.6355, 139.43631], [35.63547, 139.43596], [35.63541, 139.43543], [35.63534, 139.43477], [35.63528, 139.43391], [35.6353, 139.43292], [35.63527, 139.4325], [35.63519, 139.43169], [35.63514, 139.43127], [35.63537, 139.43121], [35.63596, 139.43107], [35.63609, 139.43105], [35.6366, 139.43103], [35.63671, 139.43102], [35.63671, 139.43105], [35.6367, 139.43112], [35.63664, 139.43137], [35.63672, 139.43166], [35.63675, 139.43174], [35.63701, 139.43173], [35.63675, 139.43174], [35.63672, 139.43166], [35.63664, 139.43137], [35.6367, 139.43112], [35.63671, 139.43105], [35.63671, 139.43102], [35.6366, 139.43103], [35.63617, 139.43104], [35.63609, 139.43105], [35.63596, 139.43107], [35.63537, 139.43121], [35.63514, 139.43127], [35.63519, 139.43169], [35.63527, 139.4325], [35.6353, 139.43292], [35.63528, 139.43391], [35.63534, 139.43477], [35.63541, 139.43543], [35.63547, 139.43596], [35.6355, 139.43631], [35.6351, 139.43637], [35.63489, 139.43644], [35.63443, 139.43666], [35.63389, 139.43693], [35.63365, 139.43706], [35.63346, 139.43713], [35.6333, 139.43716], [35.63266, 139.43719], [35.63224, 139.43722], [35.63212, 139.43723], [35.63199, 139.43722], [35.63198, 139.43692], [35.63196, 139.43642], [35.63194, 139.43601], [35.63186, 139.43538], [35.63181, 139.43511], [35.63162, 139.43444], [35.6314, 139.43387], [35.63125, 139.43358], [35.63105, 139.43323], [35.63006, 139.43171], [35.62887, 139.42987], [35.62836, 139.42913], [35.62818, 139.42882], [35.62807, 139.42891], [35.62787, 139.42906], [35.62711, 139.42963], [35.62634, 139.43021], [35.62578, 139.4306], [35.6235, 139.43168], [35.62296, 139.43194], [35.62271, 139.43206], [35.62269, 139.43197], [35.62246, 139.43128], [35.62239, 139.43105], [35.62217, 139.43038], [35.62196, 139.42972], [35.62182, 139.42941], [35.62164, 139.42916], [35.62149, 139.42901], [35.61996, 139.42782], [35.61965, 139.42763], [35.61941, 139.42752], [35.6191, 139.4274], [35.61895, 139.42736], [35.6191, 139.4274], [35.61941, 139.42752], [35.61965, 139.42763], [35.61996, 139.42782], [35.62018, 139.42799], [35.62134, 139.42888], [35.62155, 139.42906], [35.62164, 139.42916], [35.62182, 139.42941], [35.62196, 139.42972], [35.62203, 139.42996], [35.62212, 139.42986], [35.62225, 139.42967], [35.62255, 139.42917], [35.62271, 139.42889], [35.6228, 139.42854], [35.62281, 139.42848], [35.62289, 139.4285], [35.62329, 139.42862], [35.62383, 139.42877], [35.62412, 139.42879], [35.62433, 139.42875], [35.6246, 139.42862], [35.62508, 139.42834], [35.62517, 139.42828], [35.6248, 139.42729], [35.62477, 139.4272], [35.62471, 139.42704], [35.62447, 139.42641], [35.624, 139.42666], [35.62276, 139.42734], [35.62284, 139.42757], [35.6229, 139.42786], [35.62292, 139.42814], [35.62289, 139.4285], [35.62369, 139.42874], [35.62403, 139.42879], [35.62427, 139.42876], [35.62444, 139.42871], [35.62508, 139.42834], [35.62524, 139.42824], [35.62535, 139.42852], [35.62569, 139.42944], [35.62596, 139.43026], [35.62599, 139.43036], [35.62609, 139.43029], [35.62654, 139.42996], [35.62696, 139.42964], [35.62756, 139.42919], [35.62831, 139.42861], [35.6286, 139.42914], [35.62883, 139.42955], [35.62933, 139.43032], [35.63031, 139.43183], [35.63116, 139.43313], [35.63142, 139.4336], [35.63162, 139.43403], [35.63178, 139.43447], [35.63187, 139.43479], [35.63201, 139.43545], [35.63209, 139.43614], [35.63212, 139.43723], [35.63215, 139.43854], [35.63222, 139.44023], [35.63226, 139.44051], [35.6323, 139.44078], [35.63236, 139.44105], [35.63224, 139.44111], [35.63219, 139.44089], [35.63213, 139.44059], [35.63206, 139.4399], [35.63204, 139.43925]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_9dad458d68b813d0e9c515a055b7ba6b);
+        
+    
+            poly_line_447c6f4075a4b0ad71602d539b4cc329.bindTooltip(
+                `<div>
+                     ルート1: 東京都多摩市乞田648 → 東京都多摩市和田499-1, 東京都多摩市落合3-11-2, 東京都多摩市落合1-15 → 東京都多摩市乞田648
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_510f7fe706326cddc43e2ea0bab4df16 = L.marker(
+                [35.63204, 139.43925],
+                {
+}
+            ).addTo(map_9dad458d68b813d0e9c515a055b7ba6b);
+        
+    
+            var icon_35e02fa41befa00b7e7c0285093fc471 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_510f7fe706326cddc43e2ea0bab4df16.setIcon(icon_35e02fa41befa00b7e7c0285093fc471);
+        
+    
+        var popup_5a045d79b928cbcc15f0c0c583bbff42 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_50315b9d1b53ff42ce32aa6c51e462d2 = $(`<div id="html_50315b9d1b53ff42ce32aa6c51e462d2" style="width: 100.0%; height: 100.0%;">出発地: 東京都多摩市乞田648</div>`)[0];
+                popup_5a045d79b928cbcc15f0c0c583bbff42.setContent(html_50315b9d1b53ff42ce32aa6c51e462d2);
+            
+        
+
+        marker_510f7fe706326cddc43e2ea0bab4df16.bindPopup(popup_5a045d79b928cbcc15f0c0c583bbff42)
+        ;
+
+        
+    
+    
+            var marker_5d12d76cd9f09e68ad4f5a3ed9ae1298 = L.marker(
+                [35.63204, 139.43925],
+                {
+}
+            ).addTo(map_9dad458d68b813d0e9c515a055b7ba6b);
+        
+    
+            var icon_30ffe7cf49917b15089c639bc8273f66 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_5d12d76cd9f09e68ad4f5a3ed9ae1298.setIcon(icon_30ffe7cf49917b15089c639bc8273f66);
+        
+    
+        var popup_8831402c6e80b3b3280b26be9b9a4dff = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ee3b33d51076be738f609c440b6332fa = $(`<div id="html_ee3b33d51076be738f609c440b6332fa" style="width: 100.0%; height: 100.0%;">目的地: 東京都多摩市乞田648</div>`)[0];
+                popup_8831402c6e80b3b3280b26be9b9a4dff.setContent(html_ee3b33d51076be738f609c440b6332fa);
+            
+        
+
+        marker_5d12d76cd9f09e68ad4f5a3ed9ae1298.bindPopup(popup_8831402c6e80b3b3280b26be9b9a4dff)
+        ;
+
+        
+    
+    
+            var poly_line_41fdcb2df121bdf8c7c4cf0d57f12db4 = L.polyline(
+                [[35.63204, 139.43925], [35.63202, 139.43854], [35.63201, 139.43833], [35.63215, 139.43833], [35.63218, 139.4394], [35.63221, 139.44017], [35.63225, 139.44045], [35.63236, 139.44105], [35.63257, 139.4417], [35.63299, 139.44256], [35.6332, 139.44292], [35.63333, 139.44318], [35.6339, 139.44435], [35.63373, 139.44447], [35.63362, 139.44424], [35.63342, 139.44383], [35.6332, 139.4433], [35.63265, 139.44217], [35.63251, 139.44187], [35.63234, 139.44144], [35.63224, 139.44111], [35.63213, 139.44059], [35.63206, 139.4399], [35.63204, 139.43925]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_9dad458d68b813d0e9c515a055b7ba6b);
+        
+    
+            poly_line_41fdcb2df121bdf8c7c4cf0d57f12db4.bindTooltip(
+                `<div>
+                     ルート2: 東京都多摩市乞田648 → 東京都多摩市乞田1323-1 → 東京都多摩市乞田648
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_6d939654a532a7c7d5ed20c45b7b8b58 = L.marker(
+                [35.63204, 139.43925],
+                {
+}
+            ).addTo(map_9dad458d68b813d0e9c515a055b7ba6b);
+        
+    
+            var icon_1c8f4278cff04930040020f522d23340 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_6d939654a532a7c7d5ed20c45b7b8b58.setIcon(icon_1c8f4278cff04930040020f522d23340);
+        
+    
+        var popup_d270abb158fddc631c8d56c1483f866d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_328f597a60cd7f17883c5bdbb6c0425a = $(`<div id="html_328f597a60cd7f17883c5bdbb6c0425a" style="width: 100.0%; height: 100.0%;">出発地: 東京都多摩市乞田648</div>`)[0];
+                popup_d270abb158fddc631c8d56c1483f866d.setContent(html_328f597a60cd7f17883c5bdbb6c0425a);
+            
+        
+
+        marker_6d939654a532a7c7d5ed20c45b7b8b58.bindPopup(popup_d270abb158fddc631c8d56c1483f866d)
+        ;
+
+        
+    
+    
+            var marker_7b5124d082bfbc7991b1c8a166e93510 = L.marker(
+                [35.63204, 139.43925],
+                {
+}
+            ).addTo(map_9dad458d68b813d0e9c515a055b7ba6b);
+        
+    
+            var icon_6f12601e800a106ee8088f543fdf15ee = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_7b5124d082bfbc7991b1c8a166e93510.setIcon(icon_6f12601e800a106ee8088f543fdf15ee);
+        
+    
+        var popup_cf3b9ad58177fe97ceb0649a7ee5569d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_dd651a5632e8315ec6c88077a00c896b = $(`<div id="html_dd651a5632e8315ec6c88077a00c896b" style="width: 100.0%; height: 100.0%;">目的地: 東京都多摩市乞田648</div>`)[0];
+                popup_cf3b9ad58177fe97ceb0649a7ee5569d.setContent(html_dd651a5632e8315ec6c88077a00c896b);
+            
+        
+
+        marker_7b5124d082bfbc7991b1c8a166e93510.bindPopup(popup_cf3b9ad58177fe97ceb0649a7ee5569d)
+        ;
+
+        
+    
+    
+            map_9dad458d68b813d0e9c515a055b7ba6b.fitBounds(
+                [[35.61895, 139.42641], [35.63701, 139.44447]],
+                {}
+            );
+        
+</script>
+</html>

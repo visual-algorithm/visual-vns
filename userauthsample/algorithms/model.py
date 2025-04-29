@@ -173,8 +173,10 @@ class model():
         # 地図をHTMLとして保存
         # name = 'authsample/static/'+str(self.route_id)+'.html'
 
-        name = 'authsample/templates/authsample/'+str(self.route_id)+'.html'
+        name_to_templates = 'authsample/templates/authsample/'+str(self.route_id)+'.html'
+        name_to_static = 'authsample/static/'+str(self.route_id)+'.html'
 
-        m.save(name)
+        m.save(name_to_templates)
+        m.save(name_to_static)
 
         return optimal

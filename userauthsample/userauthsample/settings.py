@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "authsample.apps.AuthsampleConfig",
+    "accounts.apps.AccountsConfig",
     "django_bootstrap5",
     'rest_framework',
     'rest_framework.authtoken',

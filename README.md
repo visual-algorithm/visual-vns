@@ -1,2 +1,31 @@
+# ビジュアルVNS
 自分が学部時代に開発したアルゴリズムを実世界のデータを使って体験できるシステムです。
-![create_salesman](https://private-user-images.githubusercontent.com/90542082/438823211-32d84b30-d34e-42ac-9cc6-b53f67d24759.gif?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDU5OTE2MDEsIm5iZiI6MTc0NTk5MTMwMSwicGF0aCI6Ii85MDU0MjA4Mi80Mzg4MjMyMTEtMzJkODRiMzAtZDM0ZS00MmFjLTljYzYtYjUzZjY3ZDI0NzU5LmdpZj9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA0MzAlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNDMwVDA1MzUwMVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWVmNDFkNGMzODNhZTA2YmM2MGQyMmY0ZDI1NDFhNzAyMTEyMDUwMDIxMTdmMTMwYWNkODY0NzkxOGM4YjU1ZDMmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.CjqwUrptGdlSFgv08FWdpX_h4bnH_Zlvs7SFGUpyhug)
+
+## イメージ
+
+## 概要
+自分が開発したVariable Neighborhood Search(以下、VNSと呼びます)というアルゴリズムをアプリケーション上で体験します。
+具体的には、実世界の地理情報を使った経路を作成して表示します。
+訪問する場所(本システムでは都市と呼びます)とそれらを訪問する人物(本システムでは、セールスマンと呼びます)を登録します。
+都市ごとに、その都市を訪問するセールスマンを登録することができます。セールスマンが登録された都市にはそのセールスマン以外のセールスマンは
+訪問できません。
+このような制約の中で、各セールスマンの経路長の総和が最小になる経路セットを作成し、マップ上で表示します。
+
+## 必要なライブラリ
+- django
+- googlemaps api
+- 
+
+## 上記ライブラリのインストール方法
+
+## 使い方
+
+## 注意点
+
+## 作者情報
+
+
+
+## 概要
+### 実装機能
+

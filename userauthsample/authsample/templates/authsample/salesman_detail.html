@@ -2,9 +2,25 @@
 {% load django_bootstrap5 %}
 
 {% block main %}
-<div>
-    <h2><a href="{% url 'salesman_edit' salesman.uuid %}">{{ salesman.name }}</a></h2>
-    <small>作成日: {{ salesman.created_at }}</small>
-    <p>備考: {{ salesman.description }}</p>
+<div class="container my-5">
+    <div class="card shadow-sm rounded">
+        <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">🧑‍💼 {{ salesman.name }}</h4>
+            <a href="{% url 'salesman_edit' salesman.uuid %}" class="btn btn-sm btn-outline-primary">
+                ✏️ 編集
+            </a>
+        </div>
+        <div class="card-body">
+            <p class="text-muted mb-2">作成日: {{ salesman.created_at|date:"Y-m-d H:i" }}</p>
+
+            <p><strong>📝 備考:</strong><br>
+                {% if salesman.description %}
+                    {{ salesman.description }}
+                {% else %}
+                    <span class="text-muted">なし</span>
+                {% endif %}
+            </p>
+        </div>
+    </div>
 </div>
 {% endblock %}

@@ -2,98 +2,100 @@
 {% load static %}
 
 {% block main %}
-
-<div class="welcome">
-    <h1 class="title">ようこそ ビジュアル VNSへ!</h1>
-    <p class="subtitle">最適な経路を計算しましょう</p>
-    <table>
-        <tr>
-            <td>
-                <a class="btn btn-primary" href="{% url 'salesman_new' %}">セールスマンを登録する</a>
-            </td>
-            <td>
-                <a class="btn btn-primary" href="{% url 'city_new' %}">都市を登録する</a>
-            </td>
-            <td>
-                 <a class="btn btn-primary" href="{% url 'route_new' %}">都市セットを作成する</a>
-            </td>
-        </tr>
-    </table>
+<div class="text-center my-5">
+    <h1 class="display-5 fw-bold">ようこそ ビジュアル VNSへ!</h1>
+    <p class="lead text-muted">最適な経路を計算しましょう</p>
+    <div class="d-flex justify-content-center gap-3 mt-4">
+        <a class="btn btn-outline-primary" href="{% url 'salesman_new' %}">セールスマンを登録</a>
+        <a class="btn btn-outline-success" href="{% url 'city_new' %}">都市を登録</a>
+        <a class="btn btn-outline-secondary" href="{% url 'route_new' %}">都市セットを作成</a>
+    </div>
 </div>
 
-<h2>セールスマン一覧</h2>
-{% if salesmen %}
-<table class="table">
-    <thead>
-        <tr>
-            <th>作成者</th>
-            <th>作成日</th>
-            <th>都市名</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for salesman in salesmen %}
-        <tr>
-            <th>{{ salesman.created_by.username }}</th>
-            <th>{{ salesman.created_at }}</th>
-            <th><a href="{% url 'salesman_detail' salesman.uuid %}">{{ salesman.name }}</a></th>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% else %}
-<p>セールスマンはまだ作成されていません。</p>
-{% endif %}
+<div class="container">
 
-<h2>都市一覧</h2>
-{% if cities %}
-<table class="table">
-    <thead>
-        <tr>
-            <th>作成者</th>
-            <th>作成日</th>
-            <th>都市名</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for city in cities %}
-        <tr>
-            <th>{{ city.created_by.username }}</th>
-            <th>{{ city.created_at }}</th>
-            <th><a href="{% url 'city_detail' city.uuid %}">{{ city.name }}</a></th>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% else %}
-<p>都市はまだ作成されていません。</p>
-{% endif %}
+    <!-- 経路一覧 -->
+    <div class="card mb-5">
+        <div class="card-header bg-secondary text-white">都市セット一覧</div>
+        <div class="card-body">
+            {% if routes %}
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>作成日</th>
+                        <th>名前</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for route in routes %}
+                    <tr>
+                        <td>{{ route.created_at|date:"Y-m-d" }}</td>
+                        <td><a href="{% url 'route_detail' route.uuid %}">{{ route.name }}</a></td>
+                        <td><a class="btn btn-sm btn-outline-dark" href="{% url 'solve' route.uuid %}">最適経路計算</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="text-muted">都市セットはまだ作成されていません。</p>
+            {% endif %}
+        </div>
+    </div>
 
-<h2>経路一覧</h2>
-{% if routes %}
-<table class="table">
-    <thead>
-        <tr>
-            <th>作成者</th>
-            <th>作成日</th>
-            <th>経路名</th>
-            <th> </th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for route in routes %}
-        <tr>
-            <th>{{ route.created_by.username }}</th>
-            <th>{{ route.created_at }}</th>
-            <th><a href="{% url 'route_detail' route.uuid %}">{{ route.name }}</a></th>
-            <th><a href="{% url 'solve' route.uuid %}">最適経路計算</a></th>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% else %}
-<p>都市セットはまだ作成されていません。</p>
-{% endif %}
+    <!-- 都市一覧 -->
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">都市一覧</div>
+        <div class="card-body">
+            {% if cities %}
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>作成日</th>
+                        <th>名前</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for city in cities %}
+                    <tr>
+                        <td>{{ city.created_at|date:"Y-m-d" }}</td>
+                        <td><a href="{% url 'city_detail' city.uuid %}">{{ city.name }}</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="text-muted">都市はまだ作成されていません。</p>
+            {% endif %}
+        </div>
+    </div>
 
+    <!-- セールスマン一覧 -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">セールスマン一覧</div>
+        <div class="card-body">
+            {% if salesmen %}
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>作成日</th>
+                        <th>名前</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for salesman in salesmen %}
+                    <tr>
+                        <td>{{ salesman.created_at|date:"Y-m-d" }}</td>
+                        <td><a href="{% url 'salesman_detail' salesman.uuid %}">{{ salesman.name }}</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="text-muted">セールスマンはまだ作成されていません。</p>
+            {% endif %}
+        </div>
+    </div>
 
-{% endblock %}        
+</div>
+{% endblock %}

@@ -2,11 +2,29 @@
 {% load django_bootstrap5 %}
 
 {% block main %}
-<div>
-    <h2><a href="{% url 'city_edit' city.uuid %}">{{ city.name }}</a></h2>
-    <small>作成日: {{ city.created_at }}</small>
-    <p>住所: {{ city.address }}</p>
-    <p>セールスマン: {{ city.salesman.name }}</p>
-    <p>備考: {{ city.description }}</p>
+<div class="container my-5">
+    <div class="card shadow-sm rounded">
+        <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">🏙 {{ city.name }}</h4>
+            <a href="{% url 'city_edit' city.uuid %}" class="btn btn-sm btn-outline-primary">
+                ✏️ 編集
+            </a>
+        </div>
+        <div class="card-body">
+            <p class="text-muted mb-2">作成日: {{ city.created_at|date:"Y-m-d H:i" }}</p>
+
+            <p><strong>📍 住所:</strong> {{ city.address }}</p>
+
+            <p><strong>🧑‍💼 担当セールスマン:</strong> {{ city.salesman.name }}</p>
+
+            <p><strong>📝 備考:</strong><br>
+                {% if city.description %}
+                    {{ city.description }}
+                {% else %}
+                    <span class="text-muted">なし</span>
+                {% endif %}
+            </p>
+        </div>
+    </div>
 </div>
 {% endblock %}

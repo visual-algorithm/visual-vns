@@ -2,12 +2,21 @@
 {% load django_bootstrap5 %}
 
 {% block main %}
-<h2> ログイン </h2>
-
-<form method="post">
-    {% csrf_token %}
-    <input type="hidden" name="next" value="{{ next }}" />
-    {% bootstrap_form form %}
-    {% bootstrap_button button_type="submit" content="ログイン" %}
-</form>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="card shadow-sm rounded p-4" style="min-width: 320px; max-width: 420px; width: 100%;">
+        <div class="card-header bg-white border-bottom text-center">
+            <h4 class="mb-0">🔐 ログイン</h4>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}" />
+                {% bootstrap_form form layout='vertical' %}
+                <div class="d-grid mt-4">
+                    {% bootstrap_button button_type="submit" content="▶ ログイン" button_class="btn-outline-primary" %}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

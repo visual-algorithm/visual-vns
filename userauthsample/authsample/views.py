@@ -61,17 +61,19 @@ class UserRegistrationView(APIView):
             return Response({'message': 'User created successfully'}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+@login_required
 def top(request):
-    is_shared_exists = Salesman.objects.filter(name__contains="Shared").exists()
-
-    if is_shared_exists == False:
-        obj = Salesman(uuid=uuid.uuid4, description="Shared")
+    if not Salesman.objects.filter(name__contains="Shared").exists():
+        obj = Salesman(uuid=uuid.uuid4(), name="Shared", description="共有用セールスマン")
         obj.save()
 
-    salesmen = Salesman.objects.exclude(name__contains="Shared")
-    cities = City.objects.all()
-    routes = Route.objects.prefetch_related("cities").select_related("depot").all()
+    salesmen = Salesman.objects.filter(created_by=request.user).exclude(name__contains="Shared")
+
+    # 現在のユーザーが作成したCity
+    cities = City.objects.filter(created_by=request.user)
+
+    # routes = Route.objects.prefetch_related("cities").select_related("depot").all()
+    routes = Route.objects.filter(created_by=request.user).prefetch_related("cities").select_related("depot")
     context = {"salesmen": salesmen, "cities": cities, "routes": routes}
     return render(request, "authsample/top.html", context)
 
@@ -83,10 +85,10 @@ def salesman_new(request):
             salesman = form.save(commit=False)
             salesman.created_by = request.user
             salesman.save()
-            return redirect('city_detail', salesman_id=salesman.pk)        
+            return redirect('salesman_detail', salesman_id=salesman.pk)        
     else:
         form = SalesmanForm()
-        return render(request, 'authsample/city_new.html', {'form': form})
+        return render(request, 'authsample/salesman_new.html', {'form': form})
 
 @login_required
 def salesman_edit(request, salesman_id):

@@ -15,7 +15,12 @@
                 <a href="/" class="navbar-brand">ビジュアル VNS</a>
                 <ul class="navbar-nav mr-md-2">
                     {% if user.is_authenticated %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">ログアウト</a></li>
+                    <li class="nav-item">
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button class="nav-link">ログアウト</button>
+                        </form>
+                    </li>
                     {% else %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">ログイン</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">会員登録</a></li>

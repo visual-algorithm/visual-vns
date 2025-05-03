@@ -2,18 +2,47 @@
 {% load django_bootstrap5 %}
 
 {% block main %}
-<div>
-    <h2><a href="{% url 'route_edit' route.uuid %}">{{ route.name }}</a></h2>
-    <small>作成日: {{ route.created_at }}</small>
-    <p>拠点: {{ route.depot.name }}</p>
-    <p>都市: </p>
-    {% for city in route.cities.all %}
-        {{ city.name }} {% if not forloop.last %}, {% endif %}
-    {% endfor %}
-    <p>セールスマン: </p>
-    {% for salesman in route.salesmen.all %}
-        {{ salesman.name}} {% if not forloop.last %}, {% endif %}
-    {% endfor %}
-    <p>備考: {{ route.description }}</p>
+<div class="container my-5">
+    <div class="card shadow-sm rounded position-relative">
+        <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">🗺 {{ route.name }}</h4>
+            <a href="{% url 'route_edit' route.uuid %}" class="btn btn-sm btn-outline-primary">
+                ✏️ 編集
+            </a>
+        </div>
+        <div class="card-body">
+            <p class="text-muted mb-2">作成日: {{ route.created_at|date:"Y-m-d H:i" }}</p>
+
+            <p><strong>📍 拠点:</strong> {{ route.depot.name }}</p>
+
+            <p><strong>🏙 都市:</strong>
+                {% if route.cities.all %}
+                    {% for city in route.cities.all %}
+                        <span class="badge bg-secondary">{{ city.name }}</span>
+                    {% endfor %}
+                {% else %}
+                    <span class="text-muted">未登録</span>
+                {% endif %}
+            </p>
+
+            <p><strong>🧑‍💼 セールスマン:</strong>
+                {% if route.salesmen.all %}
+                    {% for salesman in route.salesmen.all %}
+                        <span class="badge bg-info text-dark">{{ salesman.name }}</span>
+                    {% endfor %}
+                {% else %}
+                    <span class="text-muted">未登録</span>
+                {% endif %}
+            </p>
+
+            <p><strong>📝 備考:</strong><br>
+                {% if route.description %}
+                    {{ route.description }}
+                {% else %}
+                    <span class="text-muted">なし</span>
+                {% endif %}
+            </p>
+        </div>
+    </div>
 </div>
 {% endblock %}

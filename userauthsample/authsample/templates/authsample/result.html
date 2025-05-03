@@ -2,92 +2,56 @@
 {% load static %}
 
 {% block main %}
+<div class="container my-5">
 
-<h2>最適経路</h2>
+    <!-- 経路の可視化 -->
+    <div class="card shadow-sm rounded mb-4">
+        <div class="card-header bg-white border-bottom">
+            <h4 class="mb-0">🧭 最適経路</h4>
+        </div>
+        <div class="card-body p-0">
+            <iframe src="{% static html_name %}" width="100%" height="500" style="border:0;"></iframe>
+        </div>
+    </div>
 
-<iframe src="{% static html_name %}" width="100%" height="500"></iframe>
+    <!-- 詳細 -->
+    <div class="card shadow-sm rounded">
+        <div class="card-header bg-white border-bottom">
+            <h4 class="mb-0">📋 詳細</h4>
+        </div>
+        <div class="card-body">
+            {% for cities in optimal %}
+                {% for sman in salesmen %}
+                    {% if forloop.counter == forloop.parentloop.counter %}
+                        <h5 class="mt-4 mb-3">🧑‍💼 {{ sman.name }}</h5>
+                    {% endif %}
+                {% endfor %}
 
-<h2>詳細</h2>
-{% for cities in optimal%}
-    {% for sman in salesmen %}
-        {% if forloop.counter == forloop.parentloop.counter %}
-            <h3>{{ sman.name }}</h3>
-        {% endif %}
-    {% endfor %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>都市名</th>
-                <th>住所</th>
-                <th>限定</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for city in cities %}
-                <tr>
-                    <th>{{ forloop.counter }}</th>
-                    <th>{{ city.name }}</th>
-                    <th>{{ city.address }}</th>
-                    <th>{{ city.salesman.name }}</th>
-                </tr>
+                <div class="table-responsive mb-4">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>都市名</th>
+                                <th>住所</th>
+                                <th>限定セールスマン</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for city in cities %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ city.name }}</td>
+                                    <td>{{ city.address }}</td>
+                                    <td>{{ city.salesman.name }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             {% endfor %}
-        </tbody>
-    </table>
-{% endfor %}
+        </div>
+    </div>
 
-<!-- <table class="table">
-    <thead>
-        <tr>
-            <th>都市名</th>
-            <th>住所</th>
-            <th>限定</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for city in path %}
-            <tr>
-                <th>{{ city.name }}</th>
-                <th>{{ city.address }}</th>
-                <th>{{ city.salesman.name }}</th>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table> -->
-
+</div>
 {% endblock %}
-
-<!-- <!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ route.name }}</title>
-</head>
-<body>
-    <h1>{{ route.name }}</h1>
-    <p><strong>Description:</strong> {{ route.description }}</p>
-    <p><strong>Updated At:</strong> {{ route.updated_at }}</p>
-
-    <h2>Depot</h2>
-    {% if route.depot %}
-        <p>{{ route.depot.name }} - {{ route.depot.address }}</p>
-    {% else %}
-        <p>No depot assigned.</p>
-    {% endif %}
-
-    <h2>Cities</h2>
-    <ul>
-        {% for city in route.cities.all %}
-            <li>{{ city.name }} - {{ city.address }}</li>
-        {% endfor %}
-    </ul>
-
-    <h2>Salesmen</h2>
-    <ul>
-        {% for salesman in route.salesmen.all %}
-            <li>{{ salesman.name }}</li>
-        {% endfor %}
-    </ul>
-</body>
-</html> -->

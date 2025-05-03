@@ -7,7 +7,7 @@
     <!-- 経路の可視化 -->
     <div class="card shadow-sm rounded mb-4">
         <div class="card-header bg-white border-bottom">
-            <h4 class="mb-0">🧭 最適経路</h4>
+            <h4 class="mb-0">最適経路</h4>
         </div>
         <div class="card-body p-0">
             <iframe src="{% static html_name %}" width="100%" height="500" style="border:0;"></iframe>
@@ -17,13 +17,13 @@
     <!-- 詳細 -->
     <div class="card shadow-sm rounded">
         <div class="card-header bg-white border-bottom">
-            <h4 class="mb-0">📋 詳細</h4>
+            <h4 class="mb-0">詳細</h4>
         </div>
         <div class="card-body">
             {% for cities in optimal %}
                 {% for sman in salesmen %}
                     {% if forloop.counter == forloop.parentloop.counter %}
-                        <h5 class="mt-4 mb-3">🧑‍💼 {{ sman.name }}</h5>
+                        <h5 class="mt-4 mb-3">{{ sman.name }}</h5>
                     {% endif %}
                 {% endfor %}
 

@@ -5,14 +5,14 @@
 <div class="container my-5">
     <div class="card shadow-sm rounded">
         <div class="card-header bg-white border-bottom">
-            <h4 class="mb-0">🆕 セールスマンの登録</h4>
+            <h4 class="mb-0">セールスマンの登録</h4>
         </div>
         <div class="card-body">
             <form method="post">
                 {% csrf_token %}
                 {% bootstrap_form form layout='vertical' %}
                 <div class="mt-4 d-flex justify-content-end">
-                    {% bootstrap_button button_type="submit" content="✅ 登録" button_class="btn-outline-success" %}
+                    {% bootstrap_button button_type="submit" content="登録" button_class="btn-outline-success" %}
                 </div>
             </form>
         </div>
